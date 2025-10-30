@@ -22,15 +22,10 @@ def filter_columns_exist(dest_cursor, table, values):
     return {k: v for k, v in values.items() if k in cols_destino}
 
 # ===================== Carrega .env =====================
-dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
-if load_dotenv(dotenv_path=dotenv_path, verbose=True):
-    print(".env carregado com sucesso!")
-else:
-    print(".env NÃO foi carregado!")
-    exit(1)
+load_dotenv()
 
 def get_env_var(key):
-    value = os.getenv(key)
+    value = os.environ.get(key)
     if value:
         value = value.strip().strip('"').strip("'")
     return value
